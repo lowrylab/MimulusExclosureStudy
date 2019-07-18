@@ -36,18 +36,6 @@ qux <- data.frame(eco = newdata$Eco, treatment = newdata$Treatment, mean = pout3
 qux2 <- qux[as.character(newdata$varb) == "Mass",]
 print(qux2)
 
-# Now let’s analyze models with random effects instead using the “reaster” function. The “fit” object defined at the beginning allows us to fit aster models for Mass using our 6 survival observations.
-
-fit <- as.numeric(as.character(redata$varb) == “Mass”)
-bout1 <- reaster(fixed = resp ~ varb + fit:(Eco), random = list(Pop = ~ 0 + fit:Pop, Plot = ~ 0 + fit:Plot), pred = pred, fam = fam, varvar = varb, idvar = id, root = root, data = redata, famlist = famlist)
-bout2 <- reaster(fixed = resp ~ varb + fit:(Treatment), random = list(Pop = ~ 0 + fit:Pop, Plot = ~ 0 + fit:Plot), pred = pred, fam = fam, varvar = varb, idvar = id, root = root, data = redata, famlist = famlist)
-bout3 <- reaster(fixed = resp ~ varb + fit:(Eco + Treatment), random = list(Pop = ~ 0 + fit:Pop, Plot = ~ 0 + fit:Plot), pred = pred, fam = fam, varvar = varb, idvar = id, root = root, data = redata, famlist = famlist)
-bout4 <- reaster(fixed = resp ~ varb + fit:(Eco + Treatment + Eco*Treatment), random = list(Pop = ~ 0 + fit:Pop, Plot = ~ 0 + fit:Plot), pred = pred, fam = fam, varvar = varb, idvar = id, root = root, data = redata, famlist = famlist)
-
-anova(bout1,bout3)
-anova(bout2,bout3)
-anova(bout3,bout4)
-
 # (FINAL) Next we need to make a bar plot of the estimated mean biomass at BOTH sites using the following ggplot code.
 
 library(ggplot2)
