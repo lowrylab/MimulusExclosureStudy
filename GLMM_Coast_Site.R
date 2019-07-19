@@ -127,7 +127,8 @@ ggplot(plot2, aes(x=ecotype, y=mean, fill=treatment))+
   theme(legend.justification = c(0.9,1.1), legend.position=c(0.68,1), panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 ggsave("plot2.eps", height = 8, width = 5)
 
-# (Disregard) Next we need to make a bar plot of mean dry biomass from BOTH sites using the following ggplot code. First we'll build an appropriate dataframe that includes all the necessary parameters calculated on both ecotypes at both sites under both treatments (mean/total survival, standard error). Survival doesn't need a standard error component.
+# #Next we need to make a bar plot of mean dry biomass from BOTH sites using the following ggplot code. First we'll build an appropriate dataframe that includes all the necessary parameters calculated on both ecotypes at both sites under both treatments (mean/total survival, standard error). Survival doesn't need a standard error component.
+# Note: The means and SEs for Mass were cacluated after purging all the samples which had zero biomass (i.e. no plant available for mass measurement). 
 
 library(ggplot2)
 plot3 <- data.frame(mean=c(2.737757,0.9404047,0.945464,0.02265333,0.2051113,0.06794733,0.01537,0.010746),
