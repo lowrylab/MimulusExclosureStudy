@@ -22,6 +22,8 @@ aout2 <- aster(formula = resp ~ varb + Eco + Treatment, pred = pred, fam = fam, 
 anova(aout1,aout2)
 aout3 <- aster(formula = resp ~ varb + Eco + Treatment + Eco*Treatment, pred = pred, fam = fam, varvar = varb, idvar = id, root = root, data = redata, famlist = famlist)
 anova(aout2,aout3)
+aout4 <- aster(formula = resp ~ varb + Treatment, pred = pred, fam = fam, varvar = varb, idvar = id, root = root, data = redata, famlist = famlist)
+anova(aout4,aout2)
 
 # Now we want to extract the weighted biomass means, standard error, and confidence intervals from the model for each combination of our factors.
 
