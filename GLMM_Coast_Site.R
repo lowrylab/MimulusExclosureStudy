@@ -148,55 +148,26 @@ ggplot(plot3, aes(x=ecotype, y=mean, fill=treatment))+
   theme(legend.position="none", panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 ggsave("plot3.eps", height = 8, width = 5)
 
-# While the above code works well for making a bar plot of mean dry aboveground biomass, it may be more informative to make box plots of the data in order to compare median values rather than the mean. For example: if we use the following code to visualize our biomass data, you can note that the coastal ecotype median is comparable across treatments at the inland site. Otherwise, if you just show the mean values in a bar plot, it looks as if the treatment has a significant effect on coastal biomass. In reality, the mean is only being driven up by a handful of outliers.
 
-hist(inlandcoastcon$Mass, main="Inland Site: Coastal Control")
-hist(inlandcoastex$Mass, main="Inland Site: Coastal Exclosure")
-boxplot(inlandcoastcon$Mass, main="Inland Site: Coastal Control")
-boxplot(inlandcoastex$Mass, main="Inland Site: Coastal Exclosure")
+library(ggplot2)
+plot3 <- data.frame(mean=c(2.91125071,1.3966406,1.0583552,0.3398,0.2136576,0.0790085,0.0187439,0.0132123),
+                    se=c(0.4332592,0.2571029,0.1565431,0.2050122,0.0356224,0.0073642,0.0022472,0.00159411),
+                    ecotype=c("Coastal","Coastal","Inland","Inland","Coastal","Coastal","Inland","Inland"),
+                    treatment=c("Ex","Con","Ex","Con","Ex","Con","Ex","Con"),
+                    site=c("Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)"))
 
-# Now we want to create a formal box plot figure in ggplot2 not unlike the bar plots above. The following is the faceted box plot code for both sites.
-
-ggplot(boxplotdata, aes(x=Treatment2, y=Mass))+
-  geom_boxplot(aes(fill=Treatment))+
+ggplot(plot3, aes(x=ecotype, y=mean, fill=treatment))+
+  geom_bar(stat="identity", position="dodge", width=0.7)+
+  geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position=position_dodge(.7), width=.3)+
   scale_fill_manual(values=c("#CA3542","#37AFA9"), labels=c("Control","Exclusion"), name="Treatment")+
-  labs(x="Ecotype", y="Dry Aboveground Biomass (g)")+
-  facet_grid(Site~., scales="free")+
+  labs(x="Ecotype", y="Mean Dry Aboveground Biomass (g)")+
+  geom_hline(aes(yintercept=0), size=.3)+
+  facet_grid(site~., scales="free")+
   theme_bw()+
-  theme(legend.justification = c(0.9,0.9), legend.position=c(0.9,0.9), panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-ggsave("plot4.eps", height = 8, width = 5)
-
-# (Disregard) As is evident in the rudimentary plot above, the data is tremendously skewed - so much that the boxes are squished in an effort to accomodate the outliers. To remedy this, we need to log transform the mass data. Because you can't log transform zero values (of which I have many in this data set) we will be adding 0.00001 to each mass value, then subsequently log transform that column. Because my knowledge of R is limited, I have already done this in the appropriate data subset (Titled: Boxplot Data (Full)). The following is the ggplot code for demonstrating this data in a boxplot.
-
-ggplot(boxplotdata, aes(x=Treatment2, y=Logmass))+
-  geom_boxplot(aes(fill=Treatment), width=0.7)+
-  scale_fill_manual(values=c("#CA3542","#37AFA9"), labels=c("Control","Exclusion"), name="Treatment")+
-  labs(x="Ecotype", y="Dry Aboveground Biomass (log(mg))")+
-  facet_grid(Site~., scales="free")+
-  theme_bw()+
-  scale_y_continuous(breaks=round(seq(-2, 4, by = 0.5)))+
-  theme(legend.position="none", panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  theme(axis.title.x=element_text(size=14))+
-  theme(axis.title.y=element_text(size=14))+
-  theme(axis.text.x=element_text(size=12))+
-  theme(axis.text.y=element_text(size=12))+
-  theme(strip.text.y=element_text(size=14))
-ggsave("plot5.eps", height = 8, width = 5)
-
-# (FINAL) So Acer believes that because I am already including the zero mass values in my aster figure, that it would be redundant to include them in my box plot. It would also make the boxplots nicer without including these zero values (no negative scale, no log transformation, no row of zero outliers evident in figure). Thus, the below code will be used to make our new box plot with no zero mass values.
-
-boxplotdata.adj<-boxplotdata[boxplotdata$Mass!=0,]
-
-ggplot(boxplotdata.adj, aes(x=Treatment2, y=Logmass))+
-  geom_boxplot(aes(fill=Treatment), width=0.7)+
-  scale_fill_manual(values=c("#CA3542","#37AFA9"), labels=c("Control","Exclusion"), name="Treatment")+
-  labs(x="Ecotype", y="Dry Aboveground Biomass (g)")+
-  facet_grid(Site~.)+
-  theme_bw()+
-  theme(legend.position="none", panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   theme(axis.title.x=element_text(size=16))+
   theme(axis.title.y=element_text(size=16))+
   theme(axis.text.x=element_text(size=16))+
   theme(axis.text.y=element_text(size=16))+
-  theme(strip.text.y=element_text(size=16))
-ggsave("plot6.eps", height = 8, width = 5)
+  theme(strip.text.y=element_text(size=16))+
+  theme(legend.position=c("none"), panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+ggsave("plot8.eps", height = 8, width = 5.35)
