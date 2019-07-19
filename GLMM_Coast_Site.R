@@ -145,25 +145,6 @@ ggplot(plot3, aes(x=ecotype, y=mean, fill=treatment))+
   geom_hline(aes(yintercept=0), size=.3)+
   facet_grid(site~., scales="free")+
   theme_bw()+
-  theme(legend.position="none", panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-ggsave("plot3.eps", height = 8, width = 5)
-
-
-library(ggplot2)
-plot3 <- data.frame(mean=c(2.91125071,1.3966406,1.0583552,0.3398,0.2136576,0.0790085,0.0187439,0.0132123),
-                    se=c(0.4332592,0.2571029,0.1565431,0.2050122,0.0356224,0.0073642,0.0022472,0.00159411),
-                    ecotype=c("Coastal","Coastal","Inland","Inland","Coastal","Coastal","Inland","Inland"),
-                    treatment=c("Ex","Con","Ex","Con","Ex","Con","Ex","Con"),
-                    site=c("Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)"))
-
-ggplot(plot3, aes(x=ecotype, y=mean, fill=treatment))+
-  geom_bar(stat="identity", position="dodge", width=0.7)+
-  geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position=position_dodge(.7), width=.3)+
-  scale_fill_manual(values=c("#CA3542","#37AFA9"), labels=c("Control","Exclusion"), name="Treatment")+
-  labs(x="Ecotype", y="Mean Dry Aboveground Biomass (g)")+
-  geom_hline(aes(yintercept=0), size=.3)+
-  facet_grid(site~., scales="free")+
-  theme_bw()+
   theme(axis.title.x=element_text(size=16))+
   theme(axis.title.y=element_text(size=16))+
   theme(axis.text.x=element_text(size=16))+
