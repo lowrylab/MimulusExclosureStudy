@@ -41,8 +41,8 @@ print(qux2)
 # (FINAL) Next we need to make a bar plot of the estimated mean biomass at BOTH sites using the following ggplot code.
 
 library(ggplot2)
-plot1 <- data.frame(mean=c(1.5806, -1.334219, 3.035269, 1.341806, 0.03413027, 0.03436709, 0.17776066, 0.05222931),
-                    se=c(.254,.192,.285,.248, 0.0106, 0.0107, 0.012, 0.0193),
+plot1 <- data.frame(mean=c(1.712721, -1.256874, 3.224835, 1.526579, 0.03763703, 0.03673953, 0.18391834, 0.05572122),
+                    se=c(0.2656212, 0.1921128,0.2965933, 0.2791396, 0.01104276, 0.01096556, 0.01969937, 0.01251975),
                     ecotype=c("Inland","Inland","Coastal","Coastal","Inland","Inland","Coastal","Coastal"),
                     treatment=c("Ex","Con","Ex","Con","Ex","Con","Ex","Con"),
                     site=c("Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)"))
