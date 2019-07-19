@@ -65,26 +65,3 @@ ggplot(plot1, aes(x=ecotype, y=mean, fill=treatment))+
   theme(legend.justification = c(0.9,1.1), legend.position=c(0.95,1), panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 ggsave("plot1.eps", height = 8, width = 5)
 
-# (Disregard the rest of this code, the above is correct)
-
-library(ggplot2)
-plot <- data.frame(mean=c(1.5806, -1.334219, 3.035269, 1.341806, 0.03413027, 0.03436709, 0.05222931, 0.17776066),
-                   se=c(.254,.192,.285,.248, 0.0106, 0.0107, 0.012, 0.0193),
-                   ecotype=c("Inland","Inland","Coastal","Coastal","Inland","Inland","Coastal","Coastal"),
-                   combined=c("ExIn","ConIn","ExCo","ConCo","ExIn","ConIn","ExCo","ConCo"),
-                   site=c("Coast Site","Coast Site","Coast Site","Coast Site","Inland Site","Inland Site","Inland Site","Inland Site"),
-                   treatment=c("Ex","Con","Ex","Con","Ex","Con","Ex","Con"))
-
-#change the order of the bars
-plot$combined<-factor(plot$combined, levels=c("ConCo", "ExCo","ConIn","ExIn"))
-
-ggplot(plot, aes(x=combined, y=mean, fill=combined))+
-  geom_bar(stat="identity", position="dodge")+
-  geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position=position_dodge(.9), width=.3)+
-  scale_fill_manual(values=c("dodgerblue","dodgerblue","darkorange","darkorange"), labels=c("Control","Exclusion"), name="Treatment")+
-  labs(x="Ecotype", y="Fitness", title= "Figure: Coast Site")+
-  geom_hline(aes(yintercept=0), size=.3)+
-  facet_grid(site~., scales="free")+
-  theme_bw()+
-  theme()
-ggsave("coastest.eps", height = 10, width = 5)
