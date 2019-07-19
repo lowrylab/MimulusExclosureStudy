@@ -8,6 +8,8 @@ library(lme4)
 glmminland1 <- glmer(Surv_7 ~ Treatment + Eco + Treatment:Eco + (1 | Plot) + (1 | Pop), family= "binomial", data = glmminland)
 
 # More confusing yet is our model specification for Mass. There’s no straightforward way to analyze a zero inflated, non-normal, non-integer data set. However, upon further rumination, we may want to treat our zero values as missing data (since realistically, all replicates had some mass prior to senescence / disintegration), thus excising them from the analysis altogether. Because the remaining data is still heavily skewed to the right, this makes Mass an appropriate candidate to be modeled using a gamma distribution.
+# Note: For the Mass analysis, we culled all of the samples where the plant survived to Surv_7, but for which we have no Mass data. These plant either disappeared before the final harvest or were lost during the harvest.
+
 
 glmminland.adj <- glmminland[glmminland$Mass!=0,]
 glmminland2 <- glmer(Mass ~ Treatment + Eco + Treatment:Eco + (1 |Plot) + (1 | Pop), family= "Gamma", data = glmminland.adj)
