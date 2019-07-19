@@ -131,8 +131,8 @@ ggsave("plot2.eps", height = 8, width = 5)
 # Note: The means and SEs for Mass were cacluated after purging all the samples which had zero biomass (i.e. no plant available for mass measurement). 
 
 library(ggplot2)
-plot3 <- data.frame(mean=c(2.737757,0.9404047,0.945464,0.02265333,0.2051113,0.06794733,0.01537,0.010746),
-                    se=c(0.4111004,0.1809725,0.1423283,0.01474667,0.03436435,0.0067164,0.00193352,0.00124645),
+plot3 <- data.frame(mean=c(2.91125071,1.3966406,1.0583552,0.3398,0.2136576,0.0790085,0.0187439,0.0132123),
+                    se=c(0.4332592,0.2571029,0.1565431,0.2050122,0.0356224,0.0073642,0.0022472,0.00159411),
                     ecotype=c("Coastal","Coastal","Inland","Inland","Coastal","Coastal","Inland","Inland"),
                     treatment=c("Ex","Con","Ex","Con","Ex","Con","Ex","Con"),
                     site=c("Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)"))
