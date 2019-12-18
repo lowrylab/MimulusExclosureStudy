@@ -135,7 +135,7 @@ plot3 <- data.frame(mean=c(2.91125071,1.3966406,1.0583552,0.3398,0.2136576,0.079
                     se=c(0.4332592,0.2571029,0.1565431,0.2050122,0.0356224,0.0073642,0.0022472,0.00159411),
                     ecotype=c("Coastal","Coastal","Inland","Inland","Coastal","Coastal","Inland","Inland"),
                     treatment=c("Ex","Con","Ex","Con","Ex","Con","Ex","Con"),
-                    site=c("Bodega Bay (coast site)","Bodega Bay (coast site)","Bodega Bay (coast site)","Bodega Bay (coast site)","Pepperwood (inland site)","Pepperwood (inland site)","Pepperwood (Inland Site)","Pepperwood (inland site)"))
+                    site=c("Bodega Bay (coast site)","Bodega Bay (coast site)","Bodega Bay (coast site)","Bodega Bay (coast site)","Pepperwood (inland site)","Pepperwood (inland site)","Pepperwood (inland site)","Pepperwood (inland site)"))
 
 ggplot(plot3, aes(x=ecotype, y=mean, fill=treatment))+
   geom_bar(stat="identity", position="dodge", width=0.7)+
