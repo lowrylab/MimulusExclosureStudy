@@ -112,7 +112,7 @@ ggplot(plot2, aes(x=ecotype, y=mean, fill=treatment))+
   geom_bar(stat="identity", position="dodge", width=0.7)+
   geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position=position_dodge(.9), width=0)+
   scale_fill_manual(values=c("#CA3542","#37AFA9"), labels=c("Control","Exclusion"), name="Treatment")+
-  labs(x="Ecotype", y="Percent Survival")+
+  labs(x="Ecotype", y="Percent survival")+
   geom_hline(aes(yintercept=0), size=.3)+
   facet_grid(site~., scales="free")+
   theme_bw()+
