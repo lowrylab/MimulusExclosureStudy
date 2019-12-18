@@ -45,13 +45,13 @@ plot1 <- data.frame(mean=c(1.712721, -1.256874, 3.224835, 1.526579, 0.03763703, 
                     se=c(0.2656212, 0.1921128,0.2965933, 0.2791396, 0.01104276, 0.01096556, 0.01969937, 0.01251975),
                     ecotype=c("Inland","Inland","Coastal","Coastal","Inland","Inland","Coastal","Coastal"),
                     treatment=c("Ex","Con","Ex","Con","Ex","Con","Ex","Con"),
-                    site=c("Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)"))
+                    site=c("Bodega Bay (coast site)","Bodega Bay (coast site)","Bodega Bay (coast site)","Bodega Bay (coast site)","Pepperwood (inland site)","Pepperwood (inland site)","Pepperwood (inland site)","Pepperwood (inland site)"))
 
 ggplot(plot1, aes(x=ecotype, y=mean, fill=treatment))+
   geom_bar(stat="identity", position="dodge")+
   geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position=position_dodge(.9), width=.3)+
   scale_fill_manual(values=c("#CA3542","#37AFA9"), labels=c("Control","Exclusion"), name="Treatment")+
-  labs(x="Ecotype", y="Expected Mean Dry Aboveground Biomass (g)")+
+  labs(x="Ecotype", y="Expected mean dry aboveground biomass (g)")+
   geom_hline(aes(yintercept=0), size=.3)+
   facet_grid(site~., scales="free")+
   theme_bw()+
