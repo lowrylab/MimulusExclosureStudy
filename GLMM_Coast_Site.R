@@ -106,13 +106,13 @@ plot2 <- data.frame(mean=c(99,87,95,11,99,94,81,81),
                     se=c(0,0,0,0,0,0,0,0),
                    ecotype=c("Coastal","Coastal","Inland","Inland","Coastal","Coastal","Inland","Inland"),
                    treatment=c("Ex","Con","Ex","Con","Ex","Con","Ex","Con"),
-                   site=c("Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)"))
+                   site=c("Bodega Bay (coast site)","Bodega Bay (coast site)","Bodega Bay (coast site)","Bodega Bay (coast site)","Pepperwood (inland site)","Pepperwood (inland site)","Pepperwood (inland site)","Pepperwood (inland site)"))
 
 ggplot(plot2, aes(x=ecotype, y=mean, fill=treatment))+
   geom_bar(stat="identity", position="dodge", width=0.7)+
   geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position=position_dodge(.9), width=0)+
   scale_fill_manual(values=c("#CA3542","#37AFA9"), labels=c("Control","Exclusion"), name="Treatment")+
-  labs(x="Ecotype", y="Percent Survival (%)")+
+  labs(x="Ecotype", y="Percent Survival")+
   geom_hline(aes(yintercept=0), size=.3)+
   facet_grid(site~., scales="free")+
   theme_bw()+
@@ -135,13 +135,13 @@ plot3 <- data.frame(mean=c(2.91125071,1.3966406,1.0583552,0.3398,0.2136576,0.079
                     se=c(0.4332592,0.2571029,0.1565431,0.2050122,0.0356224,0.0073642,0.0022472,0.00159411),
                     ecotype=c("Coastal","Coastal","Inland","Inland","Coastal","Coastal","Inland","Inland"),
                     treatment=c("Ex","Con","Ex","Con","Ex","Con","Ex","Con"),
-                    site=c("Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Bodega Bay (Coast Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)","Pepperwood (Inland Site)"))
+                    site=c("Bodega Bay (coast site)","Bodega Bay (coast site)","Bodega Bay (coast site)","Bodega Bay (coast site)","Pepperwood (inland site)","Pepperwood (inland site)","Pepperwood (Inland Site)","Pepperwood (inland site)"))
 
 ggplot(plot3, aes(x=ecotype, y=mean, fill=treatment))+
   geom_bar(stat="identity", position="dodge", width=0.7)+
   geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position=position_dodge(.7), width=.3)+
   scale_fill_manual(values=c("#CA3542","#37AFA9"), labels=c("Control","Exclusion"), name="Treatment")+
-  labs(x="Ecotype", y="Mean Dry Aboveground Biomass (g)")+
+  labs(x="Ecotype", y="Mean dry aboveground biomass (g)")+
   geom_hline(aes(yintercept=0), size=.3)+
   facet_grid(site~., scales="free")+
   theme_bw()+
